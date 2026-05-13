@@ -1,51 +1,65 @@
 ﻿[
-    {
-        "Asset":  "hero-real-detailing.jpg",
-        "SourceFile":  "Mobile Wash partner washing a car.jpg",
-        "Author":  "Juanacosta84",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Mobile_Wash_partner_washing_a_car.jpg"
-    },
-    {
-        "Asset":  "studio-real-detailers.jpg",
-        "SourceFile":  "Detailerzy przy Mustangu.jpg",
-        "Author":  "Caroseria",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Detailerzy_przy_Mustangu.jpg"
-    },
-    {
-        "Asset":  "detail-exterior-wash.jpg",
-        "SourceFile":  "Car washer at work.jpg",
-        "Author":  "Adeolu Paul",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Car_washer_at_work.jpg"
-    },
-    {
-        "Asset":  "interior-cleaning.jpg",
-        "SourceFile":  "Cleaning interior.jpg",
-        "Author":  "Adeolu Paul",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Cleaning_interior.jpg"
-    },
-    {
-        "Asset":  "paint-correction-polishing.jpg",
-        "SourceFile":  "Lucidatura Veicolo Auto Detailing.jpg",
-        "Author":  "Adeolu Paul",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Lucidatura_Veicolo_Auto_Detailing.jpg"
-    },
-    {
-        "Asset":  "ppf-installation.jpg",
-        "SourceFile":  "Caterham Roadsport building - 145 - Fitting paint protection film, LHS - Flickr - exfordy.jpg",
-        "Author":  "Adeolu Paul",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Caterham_Roadsport_building_-_145_-_Fitting_paint_protection_film,_LHS_-_Flickr_-_exfordy.jpg"
-    },
-    {
-        "Asset":  "ppf-film-sheet.jpg",
-        "SourceFile":  "Folia-ppf.jpg",
-        "Author":  "Adeolu Paul",
-        "License":  "CC BY-SA 4.0",
-        "Source":  "https://commons.wikimedia.org/wiki/File:Folia-ppf.jpg"
-    }
+  {
+    "file": "hero-premium-car-detail.jpg",
+    "title": "Black car with light reflection",
+    "creator": "Zieben VH",
+    "source": "https://unsplash.com/photos/black-car-with-light-reflection-2T4NS6fgrnE",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "interior-detailing.jpg",
+    "title": "A man is cleaning a car's interior",
+    "creator": "Fine Automotive Detailing",
+    "source": "https://unsplash.com/photos/a-man-is-cleaning-a-cars-interior-yYWcUfPSXoM",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "paint-correction-polishing.jpg",
+    "title": "Man polishing a classic car's paintwork",
+    "creator": "Fine Automotive Detailing",
+    "source": "https://unsplash.com/photos/man-polishing-a-classic-cars-paintwork-bNxnLSf4VMc",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "ceramic-gloss-detail.jpg",
+    "title": "Abstract black and white car detail",
+    "creator": "Salar",
+    "source": "https://unsplash.com/photos/abstract-black-and-white-car-detail-sZGtzY3gvoc",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "ppf-premium-vehicle.jpg",
+    "title": "Black Mercedes-Benz vehicle",
+    "creator": "Samuele Errico Piccarini",
+    "source": "https://unsplash.com/photos/black-mercedes-benz-vehicle-YSJSs78rw10",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "work-interior-reset.jpg",
+    "title": "Detailer cleaning the dashboard of a classic car",
+    "creator": "Luay Barani",
+    "source": "https://unsplash.com/photos/detailer-cleaning-the-dashboard-of-a-classic-car-5SmPnmCjwcU",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "work-front-end-protection.jpg",
+    "title": "A dark car being washed with foam and water",
+    "creator": "Clarence Tioh",
+    "source": "https://unsplash.com/photos/a-dark-car-being-washed-with-foam-and-water-kQdY2pR-ic8",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "studio-premium-vehicles.jpg",
+    "title": "Row of shiny black cars parked in a lot",
+    "creator": "Obi",
+    "source": "https://unsplash.com/photos/row-of-shiny-black-cars-parked-in-a-lot-Q7uv4z7gPpg",
+    "license": "Unsplash License"
+  },
+  {
+    "file": "og-bm-auto-detailing.jpg",
+    "title": "B&M Auto Detailing branded social preview",
+    "creator": "Created for B&M Auto Detailing from Unsplash source imagery",
+    "source": "assets/images/hero-premium-car-detail.jpg",
+    "license": "Derived site graphic"
+  }
 ]
