@@ -162,7 +162,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
       <div><h3>Services</h3>{service_links}</div>
       <div><h3>Contact</h3><p>{BUSINESS['address']}<br>{BUSINESS['phone']}<br>{BUSINESS['email']}<br>{BUSINESS['hours']}</p><p>Serving {", ".join(areas[:5])} and nearby communities.</p><a href="image-credits.html">Image credits</a></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 B&M Auto Detailing. All rights reserved.</span><span>Calgary detailing, ceramic coating, paint correction, and PPF.</span></div>
+    <div class="footer-bottom"><span>© 2026 B&M Auto Detailing. All rights reserved.</span><span>Calgary detailing, ceramic coating, paint correction, and PPF.</span><span>Website by <a href="https://nebrex.ca" target="_blank" rel="noopener">Nebrex.ca</a></span></div>
   </footer>
   <script src="assets/site.js" defer></script>
 </body>
