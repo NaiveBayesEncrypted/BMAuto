@@ -1,0 +1,51 @@
+﻿[
+    {
+        "Asset":  "hero-real-detailing.jpg",
+        "SourceFile":  "Mobile Wash partner washing a car.jpg",
+        "Author":  "Juanacosta84",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Mobile_Wash_partner_washing_a_car.jpg"
+    },
+    {
+        "Asset":  "studio-real-detailers.jpg",
+        "SourceFile":  "Detailerzy przy Mustangu.jpg",
+        "Author":  "Caroseria",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Detailerzy_przy_Mustangu.jpg"
+    },
+    {
+        "Asset":  "detail-exterior-wash.jpg",
+        "SourceFile":  "Car washer at work.jpg",
+        "Author":  "Adeolu Paul",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Car_washer_at_work.jpg"
+    },
+    {
+        "Asset":  "interior-cleaning.jpg",
+        "SourceFile":  "Cleaning interior.jpg",
+        "Author":  "Adeolu Paul",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Cleaning_interior.jpg"
+    },
+    {
+        "Asset":  "paint-correction-polishing.jpg",
+        "SourceFile":  "Lucidatura Veicolo Auto Detailing.jpg",
+        "Author":  "Adeolu Paul",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Lucidatura_Veicolo_Auto_Detailing.jpg"
+    },
+    {
+        "Asset":  "ppf-installation.jpg",
+        "SourceFile":  "Caterham Roadsport building - 145 - Fitting paint protection film, LHS - Flickr - exfordy.jpg",
+        "Author":  "Adeolu Paul",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Caterham_Roadsport_building_-_145_-_Fitting_paint_protection_film,_LHS_-_Flickr_-_exfordy.jpg"
+    },
+    {
+        "Asset":  "ppf-film-sheet.jpg",
+        "SourceFile":  "Folia-ppf.jpg",
+        "Author":  "Adeolu Paul",
+        "License":  "CC BY-SA 4.0",
+        "Source":  "https://commons.wikimedia.org/wiki/File:Folia-ppf.jpg"
+    }
+]

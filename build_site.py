@@ -368,10 +368,17 @@ document.addEventListener("DOMContentLoaded", () => {
 """
 
 for name, html in pages.items():
-    (ROOT / name).write_text(html, encoding="utf-8")
+    deploy_html = (
+        html
+        .replace('  <link rel="stylesheet" href="assets/styles.css">', f"  <style>\n{CSS}\n  </style>")
+        .replace('  <script src="assets/site.js" defer></script>', f"  <script>\n{JS}\n  </script>")
+    )
+    (ROOT / name).write_text(deploy_html, encoding="utf-8")
 
 (ROOT / "assets" / "styles.css").write_text(CSS, encoding="utf-8")
 (ROOT / "assets" / "site.js").write_text(JS, encoding="utf-8")
+(ROOT / ".nojekyll").write_text("", encoding="utf-8")
+(ROOT / "CNAME").write_text("bmautodetailing.ca\n", encoding="utf-8")
 (ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://bmautodetailing.ca/sitemap.xml\n", encoding="utf-8")
 (ROOT / "sitemap.xml").write_text("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + "\n".join(f"  <url><loc>https://bmautodetailing.ca/{name}</loc></url>" for name in pages) + "\n</urlset>\n", encoding="utf-8")
 
