@@ -91,12 +91,15 @@ NAV = [
 ]
 
 def page_shell(title, desc, body, active="", extra_schema=""):
-    nav = "".join(f'<a class="{ "active" if href == active else "" }" href="{href}">{label}</a>' for href, label in NAV)
+    def public_href(href):
+        return "/" if href == "index.html" else href
+    nav = "".join(f'<a class="{ "active" if href == active else "" }" href="{public_href(href)}">{label}</a>' for href, label in NAV)
     service_links = "".join(f'<a href="{href}">{title}</a>' for href, title, *_ in services) + "".join(f'<a href="{href}">{label}</a>' for href, label in seo_service_links)
     canonical_path = "" if active == "index.html" else active
     canonical_url = f"{SITE_URL}/{canonical_path}"
     og_image_url = f"{SITE_URL}/{img['og']}"
     hero_preload = f'  <link rel="preload" as="image" href="{img["hero"]}" fetchpriority="high">\n' if active == "index.html" else ""
+    robots_meta = '  <meta name="robots" content="noindex,follow">\n' if active in {"404.html"} else ""
     schema = f"""
     <script type="application/ld+json">{{
       "@context": "https://schema.org",
@@ -128,6 +131,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
   <meta name="twitter:title" content="{title}">
   <meta name="twitter:description" content="{desc}">
   <meta name="twitter:image" content="{og_image_url}">
+{robots_meta}  <meta name="theme-color" content="#080a0c">
   <link rel="canonical" href="{canonical_url}">
 {hero_preload.rstrip()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,7 +150,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">{nav}</nav>
     <a class="header-cta" href="contact.html">Book Now</a>
-    <button class="menu-toggle" data-menu-toggle aria-label="Open menu"><span></span><span></span><span></span></button>
+    <button class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
   <div class="mobile-panel" data-mobile-menu>
     <nav>{nav}<a class="mobile-book" href="contact.html">Book Now</a></nav>
@@ -160,7 +164,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
       </div>
       <div class="footer-nav"><h3>Pages</h3>{nav}</div>
       <div class="footer-nav"><h3>Services</h3>{service_links}</div>
-      <div class="footer-contact"><h3>Contact</h3><p>{BUSINESS['address']}<br>{BUSINESS['phone']}<br>{BUSINESS['email']}<br>{BUSINESS['hours']}</p><p>Serving {", ".join(areas[:5])} and nearby communities.</p><a href="image-credits.html">Image credits</a></div>
+      <div class="footer-contact"><h3>Contact</h3><p>{BUSINESS['address']}<br>{BUSINESS['phone']}<br>{BUSINESS['email']}<br>{BUSINESS['hours']}</p><p>Serving {", ".join(areas[:5])} and nearby communities.</p></div>
     </div>
     <div class="footer-bottom"><span>© 2026 B&M Auto Detailing. All rights reserved.</span><span>Calgary detailing, ceramic coating, paint correction, and PPF.</span><a class="site-credit" href="https://nebrex.ca" target="_blank" rel="noopener" aria-label="Website by Nebrex">Site by <strong>Nebrex.ca</strong></a></div>
   </footer>
@@ -350,7 +354,7 @@ pages = {
     "contact.html": simple_page("contact.html", "Contact and Book Now | B&M Auto Detailing Calgary", "Request a quote or book B&M Auto Detailing in Calgary for detailing, ceramic coating, PPF, and paint correction.", f"""<section class="subhero text-only"><div><p class="eyebrow">Book now</p><h1>Request a quote for detailing, coating, PPF, or correction.</h1><p>Send the vehicle details, preferred service, timing, and condition notes. Photos help scope interior condition, paint defects, rock-chip exposure, and film coverage needs.</p></div></section><section class="contact-layout"><form class="quote-form" action="mailto:{BUSINESS['email']}" method="post" enctype="text/plain"><label>Name<input name="name" autocomplete="name"></label><label>Phone<input name="phone" autocomplete="tel"></label><label>Email<input type="email" name="email" autocomplete="email"></label><label>Vehicle year<input name="year"></label><label>Vehicle make<input name="make"></label><label>Vehicle model<input name="model"></label><label>Service interested in<select name="service"><option>Auto detailing</option><option>Ceramic coating</option><option>Paint protection film / clear bra</option><option>Paint correction</option><option>New vehicle protection package</option></select></label><label>Preferred date<input type="date" name="date"></label><label>Upload photos<input type="file" name="photos" multiple></label><label>How did you hear about us?<input name="source"></label><label class="full">Message / notes<textarea name="message" rows="5"></textarea></label><button class="btn primary" type="submit">Send quote request</button></form><aside class="contact-card"><h2>Contact</h2><p>{BUSINESS['address']}</p><p><a href="tel:14034540203">{BUSINESS['phone']}</a><br><a href="mailto:{BUSINESS['email']}">{BUSINESS['email']}</a></p><p>{BUSINESS['hours']}</p>{map_embed("B&M Auto Detailing Calgary Google Maps location")}</aside></section>"""),
     "service-areas.html": simple_page("service-areas.html", "Calgary Service Areas | B&M Auto Detailing", "B&M Auto Detailing serves Calgary, Airdrie, Chestermere, Cochrane, Okotoks, and nearby Alberta communities.", f"""<section class="subhero text-only"><div><p class="eyebrow">Service areas</p><h1>Calgary and nearby communities.</h1><p>Local pages can be expanded for detailing, ceramic coating, PPF, and correction searches in each service area.</p></div></section><section class="local-section"><div class="area-tags">{''.join(f'<span>{a}</span>' for a in areas)}</div></section>{cta()}"""),
     "care-tips.html": simple_page("care-tips.html", "Care Tips | B&M Auto Detailing", "Vehicle care tips for Calgary detailing, ceramic coating maintenance, PPF aftercare, and seasonal protection.", f"""<section class="subhero text-only"><div><p class="eyebrow">Care tips</p><h1>Practical vehicle care guidance for Calgary conditions.</h1><p>Focused guidance for coating maintenance, winter salt cleanup, PPF aftercare, and safe wash habits.</p></div></section><section class="section"><div class="feature-grid"><article><h3>How to maintain ceramic coating in Calgary</h3><p>Use pH-neutral wash products, avoid harsh automatic brushes, and schedule decontamination when hydrophobic behavior starts to weaken.</p></article><article><h3>Why new vehicles still need paint inspection</h3><p>Factory-new paint can still have dealer wash marks, transport contamination, or defects that should be corrected before coating.</p></article><article><h3>Winter salt cleanup</h3><p>Salt should be removed from carpets, pedals, lower panels, and exterior crevices before it hardens into long-term staining or corrosion risk.</p></article></div></section>{cta()}"""),
-    "image-credits.html": simple_page("image-credits.html", "Image Credits | B&M Auto Detailing", "Temporary reusable image credits for B&M Auto Detailing website photography.", """<section class="subhero text-only"><div><p class="eyebrow">Image credits</p><h1>Temporary photography sources.</h1><p>The website uses temporary Unsplash-licensed images until original B&M project photography is available. These should be replaced with real shop, team, before-and-after, coating, and PPF photos as soon as possible.</p></div></section><section class="section"><div class="feature-grid"><article><h3>Hero image</h3><p>Black car with light reflection by Zieben VH, Unsplash License.</p></article><article><h3>Interior/detailing</h3><p>A man cleaning a car interior by Fine Automotive Detailing, Unsplash License.</p></article><article><h3>Paint correction</h3><p>Man polishing a classic car paintwork by Fine Automotive Detailing, Unsplash License.</p></article><article><h3>Ceramic/gloss detail</h3><p>Abstract black and white car detail by Salar, Unsplash License.</p></article><article><h3>Premium vehicle protection</h3><p>Black Mercedes-Benz vehicle by Samuele Errico Piccarini, Unsplash License.</p></article><article><h3>Work examples</h3><p>Dashboard detailing by Luay Barani, dark car wash by Clarence Tioh, and shiny black vehicles by Obi, Unsplash License.</p></article></div></section>"""),
+    "404.html": simple_page("404.html", "Page Not Found | B&M Auto Detailing Calgary", "The requested B&M Auto Detailing page could not be found.", """<section class="subhero text-only"><div><p class="eyebrow">Page not found</p><h1>This page is not available.</h1><p>The service may have moved, or the old link may no longer be used. Start from the homepage or request a quote for detailing, paint correction, ceramic coating, or PPF.</p><div class="hero-actions"><a class="btn primary" href="/">Back to homepage</a><a class="btn glass" href="contact.html">Request a quote</a></div></div></section>"""),
 }
 
 for filename, data in seo_pages.items():
@@ -372,12 +376,25 @@ CSS = r"""
 """
 
 JS = r"""
+(() => {
+  if (window.location.pathname.endsWith("/index.html")) {
+    const cleanPath = window.location.pathname.replace(/index\.html$/, "");
+    window.history.replaceState(null, "", cleanPath + window.location.search + window.location.hash);
+  }
+})();
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-mobile-menu]");
-  toggle?.addEventListener("click", () => menu?.classList.toggle("open"));
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  });
 });
 """
+
+for stale_page in ROOT.glob("*.html"):
+    if stale_page.name not in pages:
+        stale_page.unlink()
 
 for name, html in pages.items():
     deploy_html = (
@@ -392,7 +409,10 @@ for name, html in pages.items():
 (ROOT / ".nojekyll").write_text("", encoding="utf-8")
 (ROOT / "CNAME").write_text("bmautodetailing.ca\n", encoding="utf-8")
 (ROOT / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: https://bmautodetailing.ca/sitemap.xml\n", encoding="utf-8")
-(ROOT / "sitemap.xml").write_text("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + "\n".join(f"  <url><loc>https://bmautodetailing.ca/{name}</loc></url>" for name in pages) + "\n</urlset>\n", encoding="utf-8")
+sitemap_pages = [name for name in pages if name != "404.html"]
+def sitemap_loc(name):
+    return "https://bmautodetailing.ca/" if name == "index.html" else f"https://bmautodetailing.ca/{name}"
+(ROOT / "sitemap.xml").write_text("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + "\n".join(f"  <url><loc>{sitemap_loc(name)}</loc></url>" for name in sitemap_pages) + "\n</urlset>\n", encoding="utf-8")
 
 print(f"Built {len(pages)} pages in {ROOT}")
 
