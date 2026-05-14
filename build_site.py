@@ -17,10 +17,10 @@ MAP_URL = "https://www.google.com/maps/search/?api=1&query=B%26M%20Auto%20Detail
 MAP_EMBED = "https://www.google.com/maps?q=B%26M%20Auto%20Detailing%201247%2036%20Ave%20NE%20Calgary%20AB&output=embed"
 
 services = [
-    ("auto-detailing.html", "Interior & Exterior Detailing", "Professional detailing for Calgary cars, SUVs, and trucks that need a proper reset after daily use, winter buildup, spills, dust, or seasonal wear.", ["Interior reset", "Paint-safe exterior wash", "Seasonal cleanup"]),
-    ("paint-correction.html", "Paint Correction", "Single-stage and multi-stage correction for swirl marks, haze, oxidation, and dull paint before coating, sale prep, or long-term ownership.", ["Defect reduction", "Sharper reflections", "Coating-ready finish"]),
-    ("ceramic-coating.html", "Ceramic Coating", "Durable hydrophobic protection that improves gloss, simplifies washing, and helps defend prepared paint from UV exposure, contamination, and daily wear.", ["High-gloss finish", "Easier maintenance", "Prepared paint protection"]),
-    ("paint-protection-film.html", "Paint Protection Film", "Clear bra and PPF coverage for front-end impact areas, rock chips, road debris, and harsh highway driving around Calgary and Alberta.", ["High-impact zone coverage", "Rock chip defence", "New vehicle protection"]),
+    ("auto-detailing.html", "Interior & Exterior Detailing", "Interior and exterior reset for vehicles dealing with salt, dust, spills, daily use, lease return needs, or seasonal cleanup.", ["Best for trucks, SUVs, commuters", "Interior reset plus exterior care", "Photos help scope heavy interiors"]),
+    ("paint-correction.html", "Paint Correction", "Polishing work for swirl marks, haze, dull paint, and coating prep when the finish needs more than a wash.", ["Best for dark or marked paint", "Improves gloss and reflection", "Often needed before coating"]),
+    ("ceramic-coating.html", "Ceramic Coating", "Hydrophobic protection for prepared paint that helps gloss last longer and makes careful washing easier.", ["Best after proper prep", "Easier maintenance", "Not a rock-chip solution"]),
+    ("paint-protection-film.html", "Paint Protection Film", "Clear film planning for front-end impact zones, rock chips, road debris, and Alberta highway driving.", ["Best for new vehicles", "Front-end impact protection", "Coverage chosen by driving use"]),
 ]
 
 seo_service_links = [
@@ -48,6 +48,9 @@ faqs = [
     ("Can packages be adjusted for vehicle size and condition?", "Yes. B&M scopes the recommendation around vehicle size, interior condition, paint condition, and protection goals before confirming the appointment."),
     ("Do you work on trucks, SUVs, and daily drivers?", "Yes. Packages can be adjusted for trucks, SUVs, family vehicles, commuter cars, luxury vehicles, lease returns, and sale-prep vehicles."),
     ("What should I do before my appointment?", "Remove personal items, child seats, and valuables where possible. For quotes, photos of paint condition, interior staining, pet hair, or rock-chip areas help scope the work accurately."),
+    ("Do I need paint correction before ceramic coating?", "If the paint has swirl marks, haze, oxidation, or dealer wash marks, correction should be discussed before coating. Ceramic coating protects the finish underneath; it does not hide poor paint prep."),
+    ("What PPF coverage makes sense for Calgary highways?", "Most Calgary highway drivers start with front bumper, hood, fenders, mirrors, and other high-impact zones. The best coverage depends on vehicle shape, mileage, winter driving, and how long you plan to keep it."),
+    ("Can I send photos before booking?", "Yes. Photos of the interior, paint under light, rock-chip areas, wheels, and overall vehicle condition help B&M give a clearer starting recommendation before the appointment."),
 ]
 
 google_reviews = [
@@ -155,6 +158,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
   <div class="mobile-panel" data-mobile-menu>
     <nav>{nav}<a class="mobile-book" href="contact.html">Book Now</a></nav>
   </div>
+  <div class="mobile-sticky-cta"><a href="contact.html">Get a Quote</a><a href="tel:14034540203">Call Now</a></div>
   <main id="main">{body}</main>
   <footer class="site-footer">
     <div class="footer-grid">
@@ -174,8 +178,8 @@ def page_shell(title, desc, body, active="", extra_schema=""):
 
 def cta(label="Request a Quote"):
     return f"""<section class="final-cta">
-  <div><p class="eyebrow">Calgary vehicle protection</p><h2>Tell us what you drive and what it needs.</h2><p>B&M will recommend the right detailing, correction, coating, or PPF option based on your vehicle, condition, and goals.</p></div>
-  <div class="cta-actions"><a class="btn primary" href="contact.html">{label}</a><a class="btn secondary" href="tel:14034540203">{BUSINESS['phone']}</a></div>
+  <div><p class="eyebrow">Calgary vehicle protection</p><h2>Get a quote based on the vehicle, not a guess.</h2><p>Send the vehicle, service goal, and a few photos. B&M can recommend whether it needs interior detailing, polishing, coating, PPF, or a simpler reset.</p></div>
+  <div class="cta-actions"><a class="btn primary" href="contact.html">{label}</a><a class="btn secondary" href="contact.html">Send Photos for Pricing</a><a class="btn glass" href="tel:14034540203">{BUSINESS['phone']}</a></div>
 </section>"""
 
 def map_embed(label="B&M Auto Detailing on Google Maps"):
@@ -187,7 +191,7 @@ def map_embed(label="B&M Auto Detailing on Google Maps"):
 def service_cards():
     return "".join(f"""<article class="service-card">
   <img src="{[img['detail'], img['correction'], img['coating'], img['ppf']][i]}" alt="{title} Calgary service example" loading="lazy">
-  <div class="service-card-body"><p class="card-kicker">Calgary</p><h3>{title}</h3><p>{desc}</p><ul>{''.join(f'<li>{b}</li>' for b in bullets)}</ul><a class="service-link" href="{href}">Learn more</a></div>
+  <div class="service-card-body"><p class="card-kicker">Calgary service</p><h3>{title}</h3><p>{desc}</p><ul>{''.join(f'<li>{b}</li>' for b in bullets)}</ul><a class="service-link" href="{href}">View {title}</a></div>
 </article>""" for i, (href, title, desc, bullets) in enumerate(services))
 
 def package_cards(limit=None, items=None):
@@ -196,6 +200,19 @@ def package_cards(limit=None, items=None):
     return "".join(f"""<article class="package-card">
   <p class="package-price">{price}</p><h3>{name}</h3><p class="muted">Best for: {best}</p><p>{included}</p><div class="package-meta"><span><small>Time</small><strong>{duration}</strong></span><span><small>Price</small><strong>{price}</strong></span></div><a class="btn small" href="contact.html">Request package</a>
 </article>""" for name, best, included, duration, price in items)
+
+def package_comparison():
+    rows = [
+        ("Essential Detail", "Daily drivers needing a clean reset", "Interior vacuum, wipe-down, glass, wheels, exterior wash", "Paint correction, coating, or heavy stain extraction unless added", "From $179"),
+        ("Interior Reset", "Family vehicles, trucks, lease returns, winter interiors", "Steam cleaning, extraction, stain attention, plastics, vents, glass", "Exterior polishing or coating unless added", "From $279"),
+        ("Paint Refresh", "Dull paint, wash marks, or sale prep", "Decontamination, clay, one-step polish, sealant, exterior finishing", "Deep multi-stage correction or ceramic coating unless added", "From $449"),
+        ("Ceramic Protection", "Owners who want gloss and easier maintenance", "Paint prep, correction as needed, ceramic coating, curing guidance", "Rock-chip protection; PPF is quoted separately", "From $899"),
+        ("New Vehicle Protection", "New vehicles before Calgary roads leave marks", "Inspection, PPF options, coating recommendations, sequencing plan", "Final scope depends on coverage and vehicle condition", "Custom quote"),
+    ]
+    return """<div class="package-compare-cards">""" + "".join(
+        f"""<article><div><p class="package-price">{price}</p><h3>{name}</h3><p>{best}</p></div><dl><dt>Expected outcome</dt><dd>{outcome}</dd><dt>Not included unless added</dt><dd>{not_included}</dd></dl><a class="btn small" href="contact.html">Get a Quote</a></article>"""
+        for name, best, outcome, not_included, price in rows
+    ) + "</div>"
 
 def faq_block(limit=None):
     items = faqs if limit is None else faqs[:limit]
@@ -216,12 +233,23 @@ def review_cards(limit=None):
         for review in items
     )
 
+def intent_reviews():
+    items = [
+        ("Interior detailing", google_reviews[2]),
+        ("Exterior results", google_reviews[1]),
+        ("PPF and protection", google_reviews[11]),
+    ]
+    return "".join(
+        f"""<article class="google-review intent-review"><p class="card-kicker">{label}</p><div class="review-top"><strong>{review['name']}</strong><span aria-label="{review['rating']} star Google review">★★★★★</span></div><p class="review-date">Google review · {review['date']}</p><p>{review['text']}</p></article>"""
+        for label, review in items
+    )
+
 def trust_bar():
     return f"""<section class="trust-strip">
-  <div><strong>Calgary location</strong><span>{BUSINESS['address']}</span></div>
-  <div><strong>{BUSINESS['rating']}</strong><span>{BUSINESS['reviews']} on the public listing</span></div>
-  <div><strong>In-shop detailing</strong><span>Interior, exterior, and full detail packages</span></div>
-  <div><strong>Protection consultations</strong><span>Ceramic coating and PPF recommendations</span></div>
+  <a href="contact.html"><strong>Calgary shop</strong><span>{BUSINESS['address']}</span></a>
+  <a href="reviews.html"><strong>{BUSINESS['rating']}</strong><span>{BUSINESS['reviews']} on the public listing</span></a>
+  <a href="paint-correction.html"><strong>Paint correction first</strong><span>Finish condition is checked before coating work</span></a>
+  <a href="paint-protection-film.html"><strong>PPF + coating guidance</strong><span>Protection recommendations based on how the vehicle is driven</span></a>
 </section>"""
 
 def home():
@@ -231,10 +259,10 @@ def home():
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="eyebrow">1247 36 Ave NE, Calgary</p>
-    <h1>Premium Auto Detailing, Paint Correction & Ceramic Coating in Calgary</h1>
-    <p>Premium detailing, paint correction, ceramic coating, and PPF for Calgary drivers who want a cleaner vehicle, a deeper finish, and protection that fits Alberta roads.</p>
-    <div class="hero-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="services.html">View Services</a></div>
-    <div class="hero-points"><span>Calgary shop</span><span>Interior and exterior packages</span><span>Ceramic coating and PPF</span><span>Practical recommendations, no overselling</span></div>
+    <h1>Calgary detailing for cleaner interiors, sharper paint, and protection that fits Alberta roads.</h1>
+    <p>B&M Auto Detailing handles interior detailing, exterior detailing, paint correction, ceramic coating, and PPF planning for drivers who want clear recommendations before they spend money on protection.</p>
+    <div class="hero-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="contact.html">Send Photos for Pricing</a></div>
+    <div class="hero-points"><span>{BUSINESS['rating']} from {BUSINESS['reviews']}</span><span>Calgary shop</span><span>Paint correction before coating when needed</span><span>PPF guidance for rock-chip zones</span></div>
   </div>
 </section>
 {trust_bar()}
@@ -244,9 +272,9 @@ def home():
   <a href="exterior-detailing.html"><span>03</span><strong>Exterior detailing</strong><em>Wash, decon, gloss, protection</em></a>
   <a href="paint-correction.html"><span>04</span><strong>Paint correction</strong><em>Swirls, haze, dull paint</em></a>
 </section>
-<section class="section"><div class="section-head"><p class="eyebrow">Services</p><h2>Detailing and protection services for Calgary vehicles.</h2><p>Four core services, scoped around condition, ownership goals, and Calgary driving conditions.</p></div><div class="service-grid">{service_cards()}</div></section>
+<section class="section"><div class="section-head"><p class="eyebrow">Services</p><h2>Choose by what the vehicle actually needs.</h2><p>Some vehicles need a full interior reset. Some need polishing before coating. Some new vehicles should get front-end PPF before anything else.</p></div><div class="service-grid">{service_cards()}</div><div class="section-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="services.html">Compare Services</a></div></section>
 <section class="split-section">
-  <div><p class="eyebrow">Why B&M</p><h2>Practical recommendations, not one-size-fits-all packages.</h2><p>Some vehicles need a deep interior cleanup. Some need paint correction before protection. Some new vehicles are better served with high-impact PPF coverage first. B&M helps Calgary drivers choose the right service based on vehicle condition, finish goals, and budget instead of pushing the same package on everyone.</p><div class="proof-list"><span>Clear pricing by vehicle size</span><span>Recommendations based on condition</span><span>Calgary winter cleanup experience</span><span>Appointment notes and aftercare guidance</span></div></div>
+  <div><p class="eyebrow">Why B&M</p><h2>Inspection-first advice before coating, polishing, or PPF.</h2><p>Premium work is not just a glossy final photo. The important part is choosing the right sequence: clean the interior properly, inspect the paint, correct defects before coating when needed, and protect the areas that actually take abuse on Calgary roads.</p><div class="proof-list"><span>Vehicle condition reviewed first</span><span>Paint-safe prep before protection</span><span>Realistic correction expectations</span><span>Aftercare guidance after pickup</span></div></div>
   <img src="{img['studio']}" alt="Clean premium automotive studio environment" loading="lazy">
 </section>
 <section class="section dark-band"><div class="section-head stacked"><p class="eyebrow">Proof of work</p><h2>Visual proof matters in detailing and protection.</h2><p>Interior condition, paint clarity, gloss, and front-end protection all need to be seen clearly before a customer trusts the process.</p></div><div class="before-grid">
@@ -254,12 +282,12 @@ def home():
   <article class="before-card"><img class="proof-image" src="{img['correction']}" alt="Paint polishing and correction example" loading="lazy"><h3>Paint correction</h3><p>Polishing work for dull paint, wash marks, deeper reflection, and coating prep.</p></article>
   <article class="before-card"><img class="proof-image" src="{img['front']}" alt="Front end detailing and protection example" loading="lazy"><h3>Front-end protection</h3><p>PPF planning and protection guidance for rock-chip-prone Calgary driving.</p></article>
 </div></section>
-<section class="section"><div class="section-head"><p class="eyebrow">Packages</p><h2>Starting points with practical pricing.</h2><p>Visible starting prices keep the quote process clear. Final pricing depends on size, condition, correction needs, and protection goals.</p></div><div class="package-grid">{package_cards(5)}</div></section>
-<section class="section seo-hub"><div class="section-head"><p class="eyebrow">Service paths</p><h2>Looking for a specific service?</h2><p>Many Calgary customers already know what they need: interior detailing, exterior detailing, paint correction, ceramic coating, or PPF. The service pages make it easier to understand each option, compare outcomes, and request the right quote.</p></div><div class="hub-grid">{''.join(f'<a href="{href}">{label}<span>Calgary</span></a>' for href, label in seo_service_links)}</div></section>
-<section class="process-section"><p class="eyebrow">Process</p><h2>Simple to quote. Organized to deliver.</h2><div class="steps"><article><span>01</span><h3>Tell B&M what you drive</h3><p>Share the vehicle, condition, photos, and service you are considering.</p></article><article><span>02</span><h3>Receive a recommendation</h3><p>B&M scopes the work around condition, finish goals, and protection needs.</p></article><article><span>03</span><h3>Confirm the appointment</h3><p>Timing, prep notes, and appointment details are confirmed before work begins.</p></article><article><span>04</span><h3>Pick up with guidance</h3><p>Leave with a cleaner, better-protected vehicle and practical aftercare guidance.</p></article></div></section>
-<section class="section"><div class="section-head"><p class="eyebrow">Customer reviews</p><h2>Calgary drivers notice the finish, communication, and value.</h2><p>Selected Google reviews highlighting clean interiors, strong exterior results, PPF work, fair pricing, and professional service.</p></div><div class="review-grid">{review_cards(3)}</div><a class="text-link" href="reviews.html">Read customer reviews</a></section>
+<section class="section"><div class="section-head"><p class="eyebrow">Packages</p><h2>Starting prices with clear package logic.</h2><p>Pricing is shown as a starting point. Vehicle size, interior condition, paint defects, coating prep, and PPF coverage can change the final quote.</p></div>{package_comparison()}</section>
+<section class="section seo-hub"><div class="section-head"><p class="eyebrow">Service paths</p><h2>High-intent Calgary service pages.</h2><p>Use these pages when you already know the service you are comparing or searching for.</p></div><div class="hub-grid">{''.join(f'<a href="{href}">{label} Calgary<span>View service page</span></a>' for href, label in seo_service_links)}</div></section>
+<section class="process-section"><p class="eyebrow">Process</p><h2>Send details. Get a recommendation. Book the right work.</h2><div class="steps"><article><span>01</span><h3>Send vehicle details</h3><p>Share the vehicle, service goal, and photos of the interior, paint, or rock-chip areas.</p></article><article><span>02</span><h3>Get the right scope</h3><p>B&M recommends detailing, correction, coating, PPF, or a simpler reset based on condition.</p></article><article><span>03</span><h3>Confirm timing</h3><p>Appointment timing, prep notes, expected duration, and quote range are confirmed first.</p></article><article><span>04</span><h3>Pick up with aftercare</h3><p>Leave with maintenance guidance so the finish is easier to care for after the work.</p></article></div></section>
+<section class="section"><div class="section-head"><p class="eyebrow">Customer reviews</p><h2>Proof tied to what buyers care about.</h2><p>Interior cleanup, exterior results, and protection work each create a different kind of trust.</p></div><div class="review-grid">{intent_reviews()}</div><div class="section-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="reviews.html">Read Google Reviews</a></div></section>
 <section class="local-section"><div><p class="eyebrow">Calgary location</p><h2>Visit B&M Auto Detailing in NE Calgary.</h2><p>B&M Auto Detailing serves Calgary drivers and nearby communities including Airdrie, Chestermere, Cochrane, and Okotoks.</p><div class="area-tags">{''.join(f'<span>{a}</span>' for a in areas)}</div></div>{map_embed("B&M Auto Detailing Calgary Google Maps location")}</section>
-<section class="section faq-preview"><div class="section-head"><p class="eyebrow">FAQ</p><h2>Clear answers before you request a quote.</h2></div>{faq_block(6)}</section>
+<section class="section faq-preview"><div class="section-head"><p class="eyebrow">FAQ</p><h2>Answers that affect the quote.</h2></div>{faq_block(6)}</section>
 {cta()}
 """
     return page_shell("B&M Auto Detailing | Premium Auto Detailing Calgary", "Premium auto detailing, ceramic coating, paint protection film, and paint correction in Calgary, Alberta.", body, "index.html")
@@ -283,15 +311,15 @@ def service_page(filename):
     service_packages = service_package_map.get(filename, packages[:3])
     body = f"""
 <section class="subhero">
-  <div><p class="eyebrow">B&M Auto Detailing</p><h1>{h1}</h1><p>{meta}</p><div class="hero-actions"><a class="btn primary" href="contact.html">Request a quote</a><a class="btn glass" href="gallery.html">View results</a></div></div>
+  <div><p class="eyebrow">B&M Auto Detailing</p><h1>{h1}</h1><p>{meta}</p><div class="hero-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="contact.html">Send Photos for Pricing</a></div></div>
   <img src="{image_url}" alt="{h1} professional result" loading="eager" decoding="async">
 </section>
 {trust_bar()}
-<section class="split-section"><div><p class="eyebrow">Service overview</p><h2>Built for Calgary driving, not generic showroom copy.</h2><p>{intro}</p><div class="proof-list">{''.join(f'<span>{item}</span>' for item in includes)}</div></div><div class="info-panel"><h3>Best for</h3><ul><li>Daily drivers that need easier maintenance</li><li>New vehicles needing early protection</li><li>Luxury and European vehicles</li><li>Trucks, SUVs, lease returns, and sale prep</li></ul></div></section>
+<section class="split-section"><div><p class="eyebrow">Service overview</p><h2>Scoped by condition, not by a generic menu.</h2><p>{intro}</p><div class="proof-list">{''.join(f'<span>{item}</span>' for item in includes)}</div></div><div class="info-panel"><h3>Best for</h3><ul><li>Daily drivers that need easier maintenance</li><li>New vehicles needing early protection</li><li>Luxury and European vehicles</li><li>Trucks, SUVs, lease returns, and sale prep</li></ul></div></section>
 <section class="section"><div class="section-head"><p class="eyebrow">What is included</p><h2>Clear scope before the appointment.</h2><p>The final recommendation depends on vehicle size, paint condition, interior condition, coating or film selection, and the customer's ownership goals.</p></div><div class="feature-grid"><article><h3>Inspection</h3><p>Vehicle condition, finish goals, risk areas, and timing are reviewed before the work is confirmed.</p></article><article><h3>Preparation</h3><p>Paint-safe washing, decontamination, interior prep, correction, masking, or surface prep is sequenced according to the service.</p></article><article><h3>Service work</h3><p>Detailing, coating, PPF, or correction work is completed with a controlled process and clear expectations.</p></article><article><h3>Aftercare</h3><p>Customers receive practical maintenance guidance so the result lasts longer and avoids avoidable damage.</p></article></div></section>
 <section class="section dark-band"><div class="section-head stacked"><p class="eyebrow">Packages</p><h2>Packages that fit this service.</h2><p>These are common starting points. The final recommendation is confirmed after B&M reviews the vehicle condition, finish goals, and protection needs.</p></div><div class="package-grid service-packages">{package_cards(items=service_packages)}</div></section>
 <section class="section"><div class="section-head"><p class="eyebrow">Common questions</p><h2>Before you book.</h2></div>{faq_block(5)}</section>
-{cta("Book this service")}
+{cta("Get a Quote")}
 """
     return page_shell(f"{h1} | B&M Auto Detailing", meta, body, filename)
 
@@ -346,7 +374,7 @@ seo_pages = {
 pages = {
     "index.html": home(),
     "services.html": simple_page("services.html", "Services | B&M Auto Detailing Calgary", "Overview of B&M Auto Detailing services including detailing, ceramic coating, PPF, and paint correction in Calgary.", f"""<section class="subhero text-only"><div><p class="eyebrow">Services</p><h1>Vehicle appearance and protection services in Calgary.</h1><p>Detailing, paint correction, ceramic coating, and paint protection film are connected services. The right plan depends on what the vehicle needs now and what it needs protection from next.</p></div></section><section class="section"><div class="service-grid">{service_cards()}</div></section>{cta()}"""),
-    "packages.html": simple_page("packages.html", "Packages and Pricing Guide | B&M Auto Detailing", "Compare detailing, paint enhancement, ceramic protection, new vehicle protection, and seasonal protection packages in Calgary.", f"""<section class="subhero text-only"><div><p class="eyebrow">Packages</p><h1>Packages and pricing guide.</h1><p>Use these packages as practical buying paths. Final pricing depends on vehicle size, condition, material selection, and the amount of correction or protection required.</p></div></section><section class="section"><div class="package-grid wide">{package_cards()}</div></section><section class="section dark-band"><div class="comparison"><h2>Package comparison</h2><table><thead><tr><th>Package</th><th>Best for</th><th>Duration</th><th>Starting price</th></tr></thead><tbody>{''.join(f'<tr><td data-label="Package">{n}</td><td data-label="Best for">{b}</td><td data-label="Duration">{d}</td><td data-label="Starting price">{p}</td></tr>' for n,b,i,d,p in packages)}</tbody></table></div></section>{cta()}"""),
+    "packages.html": simple_page("packages.html", "Packages and Pricing Guide | B&M Auto Detailing", "Compare detailing, paint enhancement, ceramic protection, new vehicle protection, and seasonal protection packages in Calgary.", f"""<section class="subhero text-only"><div><p class="eyebrow">Packages</p><h1>Packages and pricing guide.</h1><p>Use these packages as practical buying paths. Final pricing depends on vehicle size, condition, material selection, and the amount of correction or protection required.</p><div class="hero-actions"><a class="btn primary" href="contact.html">Get a Quote</a><a class="btn glass" href="contact.html">Send Photos for Pricing</a></div></div></section><section class="section">{package_comparison()}</section><section class="section dark-band"><div class="comparison"><h2>Quick comparison</h2><table><thead><tr><th>Package</th><th>Best for</th><th>Duration</th><th>Starting price</th></tr></thead><tbody>{''.join(f'<tr><td data-label="Package">{n}</td><td data-label="Best for">{b}</td><td data-label="Duration">{d}</td><td data-label="Starting price">{p}</td></tr>' for n,b,i,d,p in packages)}</tbody></table></div></section>{cta()}"""),
     "gallery.html": simple_page("gallery.html", "Gallery and Before After | B&M Auto Detailing", "Gallery and before-after examples for detailing, ceramic coating, PPF, and paint correction work in Calgary.", f"""<section class="subhero text-only"><div><p class="eyebrow">Gallery</p><h1>Detailing, protection, and finish examples.</h1><p>A visual overview of the service categories customers ask about most: interior resets, ceramic coating gloss, PPF coverage, correction work, and exterior detailing.</p></div></section><section class="section"><div class="filter-row"><button class="active">All</button><button>Detailing</button><button>Ceramic</button><button>PPF</button><button>Correction</button></div><div class="gallery-grid">{''.join(f'<figure><img src="{url}" alt="{cap}"><figcaption>{cap}</figcaption></figure>' for url, cap in [(img['interior'],'Full interior reset on SUV'),(img['coating'],'Ceramic coating on black sedan'),(img['ppf'],'Full front PPF package'),(img['correction'],'Paint correction before ceramic install'),(img['detail'],'Exterior detail and gloss enhancement')])}</div></section>{cta()}"""),
     "reviews.html": simple_page("reviews.html", "Customer Reviews | B&M Auto Detailing Calgary", "Customer reviews for B&M Auto Detailing in Calgary, including detailing, PPF, communication, pricing, and finished vehicle results.", f"""<section class="subhero text-only reviews-hero"><div><p class="eyebrow">Customer reviews</p><h1>Calgary drivers trust B&M with detailing and protection work.</h1><p>Customers mention clean interiors, strong exterior results, fair pricing, professional communication, PPF installation, and vehicles looking better than expected after service.</p><div class="hero-actions"><a class="btn primary" href="contact.html">Request a quote</a><a class="btn glass" href="https://www.google.com/search?q=bm+auto+detailing+calgary#lrd=0x5371650076e95fa9:0xb4fd3f6c4e98f878,1,,,," target="_blank" rel="noopener">View on Google</a></div></div></section><section class="review-stats"><article><strong>4.8</strong><span>Google rating</span></article><article><strong>21</strong><span>Public reviews</span></article><article><strong>Calgary</strong><span>1247 36 Ave NE</span></article></section><section class="section"><div class="section-head"><p class="eyebrow">Review highlights</p><h2>Detailing, PPF, communication, and clean results.</h2><p>Selected written Google reviews are shown in the customer's own words, with names and dates attached for credibility.</p></div><div class="review-grid large">{review_cards()}</div></section>{cta()}"""),
     "about.html": simple_page("about.html", "About B&M Auto Detailing | Calgary", "About B&M Auto Detailing, a Calgary automotive detailing and vehicle protection studio focused on prep, protection, and long-term vehicle care.", f"""<section class="subhero"><div><p class="eyebrow">About</p><h1>A Calgary studio built around careful prep and practical protection.</h1><p>B&M Auto Detailing exists for drivers who want more than a surface clean. The focus is on controlled process, honest recommendations, and protection plans that make sense for how each vehicle is used.</p></div><img src="{img['studio']}" alt="Premium detailing studio interior"></section><section class="split-section"><div><p class="eyebrow">Approach</p><h2>Specialist craftsmanship without inflated promises.</h2><p>The best detailing and protection work happens before the final gloss shot. Inspection, wash process, decontamination, correction, film selection, coating prep, and aftercare all affect the result. B&M keeps that process clear so customers know what is being recommended and why.</p></div><div class="info-panel"><h3>Why Calgary drivers choose specialist care</h3><ul><li>Road salt and winter contamination</li><li>Rock chips from highway and construction driving</li><li>UV exposure and frequent wash cycles</li><li>Lease return, resale, and new vehicle protection needs</li></ul></div></section>{cta()}"""),
@@ -373,6 +401,8 @@ CSS = r"""
 .footer-bottom{align-items:center;gap:1rem;flex-wrap:wrap}.site-credit{display:inline-flex!important;align-items:center;gap:.35rem;margin:0!important;padding:.5rem .72rem;border:1px solid rgba(168,135,93,.28);background:rgba(168,135,93,.08);color:var(--soft)!important;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;font-weight:760}.site-credit strong{color:var(--accent);font-weight:800}.site-credit:hover{border-color:rgba(168,135,93,.55);background:rgba(168,135,93,.13);color:#fff!important}@media (max-width:680px){.footer-bottom{display:grid;gap:.75rem}.site-credit{justify-self:start}}
 .header-cta{white-space:nowrap}
 .site-footer{padding:3.6rem clamp(1rem,3vw,2rem) 1.8rem}.footer-grid{grid-template-columns:minmax(260px,1.15fr) minmax(120px,.55fr) minmax(190px,.82fr) minmax(230px,.9fr);gap:clamp(1.5rem,4vw,4rem);align-items:start}.footer-brand{margin-bottom:1rem}.footer-brand .brand-mark{width:2.45rem;height:2.45rem}.footer-brand strong{font-size:.88rem}.footer-brand small{font-size:.7rem}.site-footer h3{font-size:.74rem;line-height:1;letter-spacing:.05em;margin:0 0 .8rem}.site-footer p,.site-footer a{font-size:.86rem;line-height:1.52}.site-footer a{margin:.38rem 0}.footer-copy{max-width:360px;margin:.8rem 0 0}.footer-contact p{max-width:280px;margin:.2rem 0 1.05rem}.footer-bottom{font-size:.8rem}.footer-bottom span{line-height:1.45}.site-footer .site-credit{font-size:.72rem;line-height:1}@media (max-width:1120px){.footer-grid{grid-template-columns:1.1fr .8fr;row-gap:2.3rem}.footer-contact p{max-width:360px}}@media (max-width:680px){.site-footer{padding:3rem 1rem 1.7rem}.footer-grid{grid-template-columns:1fr;gap:2rem}.footer-copy,.footer-contact p{max-width:100%}.site-footer p,.site-footer a{font-size:.88rem}.site-footer h3{margin-bottom:.65rem}.footer-bottom{font-size:.82rem}.site-footer .site-credit{font-size:.74rem}}
+.trust-strip a{display:block;padding:1.35rem clamp(1rem,3vw,2rem);border-right:1px solid var(--line)}.trust-strip a:hover{background:rgba(255,255,255,.035)}.section-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}.package-compare-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1rem}.package-compare-cards article{display:flex;flex-direction:column;gap:1rem;border:1px solid var(--line);background:linear-gradient(180deg,#161c20,#101417);padding:1.2rem;min-height:100%}.package-compare-cards h3{font-size:1.08rem}.package-compare-cards p{color:var(--muted);margin:.45rem 0 0}.package-compare-cards dl{display:grid;gap:.65rem;margin:0;color:var(--soft);font-size:.9rem}.package-compare-cards dt{color:var(--accent);font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;font-weight:760}.package-compare-cards dd{margin:0}.package-compare-cards .btn{align-self:flex-start;margin-top:auto}.intent-review p:last-child{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}.mobile-sticky-cta{display:none}.mobile-sticky-cta a{display:grid;place-items:center;min-height:48px;font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}.mobile-sticky-cta a:first-child{background:var(--accent);color:#111}.mobile-sticky-cta a:last-child{background:#0e1215;color:var(--text);border-left:1px solid var(--line)}
+@media (max-width:1180px){.package-compare-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.package-compare-cards article:last-child{grid-column:1/-1}}@media (max-width:680px){body{padding-bottom:56px}.package-compare-cards{grid-template-columns:1fr}.package-compare-cards article:last-child{grid-column:auto}.section-actions .btn,.hero-actions .btn,.cta-actions .btn{width:100%}.mobile-sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);box-shadow:0 -18px 50px rgba(0,0,0,.35)}}
 """
 
 JS = r"""
