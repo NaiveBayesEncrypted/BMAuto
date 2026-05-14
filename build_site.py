@@ -140,7 +140,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" data-header>
     <div class="top-line"><a href="tel:14034540203">{BUSINESS['phone']}</a><span>{BUSINESS['address']}</span><span>{BUSINESS['rating']} from {BUSINESS['reviews']}</span></div>
-    <a class="brand" href="index.html" aria-label="B&M Auto Detailing home">
+    <a class="brand" href="/" aria-label="B&M Auto Detailing home">
       <span class="brand-mark">B&M</span>
       <span><strong>Auto Detailing</strong><small>Calgary protection studio</small></span>
     </a>
