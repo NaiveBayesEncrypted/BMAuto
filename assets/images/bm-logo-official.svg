@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1350" height="280" viewBox="0 0 1350 280" role="img" aria-labelledby="title desc">
+  <title id="title">B&amp;M Auto Detailing</title>
+  <desc id="desc">B&amp;M Auto Detailing Calgary vehicle protection wordmark.</desc>
+  <g fill="none">
+    <text x="0" y="118" font-family="Manrope, Arial, sans-serif" font-size="156" font-weight="850" letter-spacing="-2" fill="#f4f1eb">B&amp;M</text>
+    <path d="M0 170h430" stroke="#b99562" stroke-width="11"/>
+    <text x="480" y="75" font-family="Manrope, Arial, sans-serif" font-size="58" font-weight="850" letter-spacing="8" fill="#f4f1eb">AUTO DETAILING</text>
+    <text x="482" y="150" font-family="Manrope, Arial, sans-serif" font-size="31" font-weight="650" letter-spacing="7" fill="#a7adb1">CALGARY VEHICLE PROTECTION</text>
+    <path d="M482 205h670" stroke="#273039" stroke-width="3"/>
+    <text x="482" y="260" font-family="Manrope, Arial, sans-serif" font-size="27" font-weight="700" letter-spacing="5" fill="#b99562">WINDOW TINT · PPF · STEREO · CAMERA · STARTER</text>
+  </g>
+</svg>

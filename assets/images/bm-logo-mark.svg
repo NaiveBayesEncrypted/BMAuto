@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="260" viewBox="0 0 420 260" role="img" aria-labelledby="title desc">
+  <title id="title">B&amp;M Auto Detailing Mark</title>
+  <desc id="desc">Compact B&amp;M logo mark.</desc>
+  <rect x="5" y="5" width="410" height="250" fill="#080a0c" stroke="#b99562" stroke-width="10"/>
+  <text x="210" y="132" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="102" font-weight="850" letter-spacing="-1" fill="#f4f1eb">B&amp;M</text>
+  <path d="M92 172h236" stroke="#b99562" stroke-width="10"/>
+  <text x="210" y="214" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="6" fill="#a7adb1">CALGARY</text>
+</svg>
