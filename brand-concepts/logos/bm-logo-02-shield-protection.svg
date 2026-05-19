@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">B&amp;M Auto Detailing Logo Concept 02</title>
+  <desc id="desc">Shield style protection logo for B&amp;M Auto Detailing.</desc>
+  <rect width="1600" height="1000" fill="#090b0d"/>
+  <g transform="translate(180 130)">
+    <path d="M310 30 570 120v230c0 190-112 315-260 390C162 665 50 540 50 350V120L310 30Z" fill="#11171b" stroke="#b99562" stroke-width="10"/>
+    <path d="M310 88 516 158v190c0 146-84 246-206 310C188 594 104 494 104 348V158l206-70Z" fill="none" stroke="#2b343c" stroke-width="4"/>
+    <text x="310" y="315" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="126" font-weight="900" letter-spacing="2" fill="#f4f1eb">B&amp;M</text>
+    <path d="M210 388h200" stroke="#b99562" stroke-width="10" stroke-linecap="square"/>
+    <text x="310" y="455" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="36" font-weight="800" letter-spacing="7" fill="#d8d2c8">CALGARY</text>
+    <path d="M222 535c58-30 118-30 176 0" fill="none" stroke="#5c7374" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(830 330)">
+    <text x="0" y="0" font-family="Manrope, Arial, sans-serif" font-size="84" font-weight="850" letter-spacing="3" fill="#f4f1eb">B&amp;M AUTO</text>
+    <text x="0" y="82" font-family="Manrope, Arial, sans-serif" font-size="84" font-weight="850" letter-spacing="3" fill="#f4f1eb">DETAILING</text>
+    <text x="0" y="150" font-family="Manrope, Arial, sans-serif" font-size="27" font-weight="650" letter-spacing="4" fill="#a7adb1">TINT · PPF · DETAILING · ACCESSORIES</text>
+    <line x1="0" y1="195" x2="510" y2="195" stroke="#b99562" stroke-width="8"/>
+  </g>
+</svg>

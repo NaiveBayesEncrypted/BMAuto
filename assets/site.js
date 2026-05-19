@@ -20,9 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const error = document.querySelector("[data-admin-error]");
     const email = document.querySelector("[data-admin-email]");
     const password = document.querySelector("[data-admin-password]");
+    const currentLogin = document.querySelector("[data-current-login]");
     const showDashboard = () => {
       login.hidden = true;
       dashboard.hidden = false;
+      if (currentLogin) currentLogin.textContent = "Last login: " + new Date().toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
       sessionStorage.setItem("bmPortalSignedIn", "true");
     };
     if (sessionStorage.getItem("bmPortalSignedIn") === "true") showDashboard();

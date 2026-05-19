@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">B&amp;M Auto Detailing Logo Concept 05</title>
+  <desc id="desc">Technical horizontal badge logo for B&amp;M Auto Detailing.</desc>
+  <rect width="1600" height="1000" fill="#080a0c"/>
+  <g transform="translate(125 270)">
+    <rect x="0" y="0" width="1350" height="430" fill="#11171b" stroke="#273039" stroke-width="4"/>
+    <rect x="36" y="36" width="358" height="358" fill="#0b0f12" stroke="#b99562" stroke-width="8"/>
+    <path d="M78 290c78-82 197-82 275 0" fill="none" stroke="#5c7374" stroke-width="16" stroke-linecap="round"/>
+    <text x="214" y="226" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="116" font-weight="900" fill="#f4f1eb">B&amp;M</text>
+    <g transform="translate(460 116)">
+      <text x="0" y="0" font-family="Manrope, Arial, sans-serif" font-size="78" font-weight="850" letter-spacing="3" fill="#f4f1eb">AUTO DETAILING</text>
+      <line x1="0" y1="48" x2="650" y2="48" stroke="#b99562" stroke-width="9"/>
+      <text x="0" y="120" font-family="Manrope, Arial, sans-serif" font-size="36" font-weight="700" letter-spacing="5" fill="#a7adb1">CALGARY VEHICLE SERVICES</text>
+      <text x="0" y="190" font-family="Manrope, Arial, sans-serif" font-size="28" font-weight="760" letter-spacing="4" fill="#b99562">TINT / PPF / AUDIO / CAMERA / STARTER</text>
+    </g>
+  </g>
+</svg>
