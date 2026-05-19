@@ -8,7 +8,7 @@ BUSINESS = {
     "phone": "(403) 454-0203",
     "email": "bookings@bmautodetailing.ca",
     "address": "1247 36 Ave NE, Calgary, AB T2E 6N6",
-    "hours": "Mon-Fri, 9:00 AM-6:00 PM; Sat, 10:00 AM-3:30 PM",
+    "hours": "Mon-Sat, 9:00 AM-6:00 PM",
     "rating": "4.8 Google rating",
     "reviews": "21 reviews",
 }
