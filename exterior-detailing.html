@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sessionStorage.getItem("bmPortalSignedIn") === "true") showDashboard();
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const ok = email.value.trim().toLowerCase() === "client@bmautodetailing.ca" && password.value === "BMAuto2026!";
+      const ok = email.value.trim().toLowerCase() === "admin@bmautodetailing.ca" && password.value === "BMAdmin-2026!";
       if (ok) showDashboard();
       else error.hidden = false;
     });

@@ -70,25 +70,25 @@
   <main id="main"><section class="admin-shell" data-admin-portal>
   <div class="admin-login" data-admin-login>
     <div>
-      <p class="eyebrow">Client portal</p>
+      <p class="eyebrow">Admin portal</p>
       <h1>B&M website control centre.</h1>
-      <p>This private portal gives B&M quick access to website status, edit requests, contact details, and Nebrex support without needing to touch code or hosting settings.</p>
+      <p>Secure client access for website status, update requests, business links, and Nebrex-managed website support.</p>
     </div>
     <form class="portal-card" data-admin-form>
-      <div class="brand portal-brand"><span class="brand-mark">B&M</span><span><strong>Auto Detailing</strong><small>Client portal</small></span></div>
-      <label>Email<input type="email" data-admin-email autocomplete="email" placeholder="client@bmautodetailing.ca" required></label>
+      <div class="brand portal-brand"><span class="brand-mark">B&M</span><span><strong>Auto Detailing</strong><small>Admin access</small></span></div>
+      <label>Admin email<input type="email" data-admin-email autocomplete="email" placeholder="admin@bmautodetailing.ca" required></label>
       <label>Password<input type="password" data-admin-password autocomplete="current-password" placeholder="Enter portal password" required></label>
-      <p class="portal-hint">Demo access for handoff: <strong>client@bmautodetailing.ca</strong> / <strong>BMAuto2026!</strong></p>
-      <p class="portal-error" data-admin-error hidden>Use the portal email and password provided in the handoff.</p>
+      <p class="portal-hint">Authorized B&M admin access only.</p>
+      <p class="portal-error" data-admin-error hidden>Incorrect admin email or password.</p>
       <button class="btn primary" type="submit">Sign in</button>
     </form>
   </div>
   <div class="admin-dashboard" data-admin-dashboard hidden>
     <div class="dashboard-hero">
       <div>
-        <p class="eyebrow">Welcome back</p>
-        <h1>B&M Auto Detailing admin portal.</h1>
-        <p>Website ownership, service updates, quote requests, and support are organized here so the site stays clean and professional.</p>
+        <p class="eyebrow">Welcome, admin</p>
+        <h1>B&M Auto Detailing control panel.</h1>
+        <p>Website ownership, service updates, quote requests, and support are organized here so the public site stays clean, current, and professional.</p>
       </div>
       <button class="btn glass" type="button" data-admin-logout>Sign out</button>
     </div>
@@ -109,7 +109,7 @@
       <div class="admin-list">
         <article><h3>Editable with Nebrex support</h3><p>Services, prices, photos, reviews, hours, phone, address, gallery work, and page copy.</p></article>
         <article><h3>Protected from accidental changes</h3><p>Website layout, mobile design, SEO structure, speed setup, and core navigation remain managed.</p></article>
-        <article><h3>Recommended workflow</h3><p>B&M sends updates by email or text. Nebrex applies them cleanly and keeps a backup of the site.</p></article>
+        <article><h3>Recommended workflow</h3><p>B&M sends updates through the portal actions. Nebrex applies them cleanly and keeps a backup of the site.</p></article>
       </div>
     </section>
   </div>
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (sessionStorage.getItem("bmPortalSignedIn") === "true") showDashboard();
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const ok = email.value.trim().toLowerCase() === "client@bmautodetailing.ca" && password.value === "BMAuto2026!";
+      const ok = email.value.trim().toLowerCase() === "admin@bmautodetailing.ca" && password.value === "BMAdmin-2026!";
       if (ok) showDashboard();
       else error.hidden = false;
     });
