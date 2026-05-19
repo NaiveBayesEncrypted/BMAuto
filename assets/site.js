@@ -12,4 +12,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const isOpen = menu?.classList.toggle("open");
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
+  const portal = document.querySelector("[data-admin-portal]");
+  const form = document.querySelector("[data-admin-form]");
+  if (portal && form) {
+    const login = document.querySelector("[data-admin-login]");
+    const dashboard = document.querySelector("[data-admin-dashboard]");
+    const error = document.querySelector("[data-admin-error]");
+    const email = document.querySelector("[data-admin-email]");
+    const password = document.querySelector("[data-admin-password]");
+    const showDashboard = () => {
+      login.hidden = true;
+      dashboard.hidden = false;
+      sessionStorage.setItem("bmPortalSignedIn", "true");
+    };
+    if (sessionStorage.getItem("bmPortalSignedIn") === "true") showDashboard();
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const ok = email.value.trim().toLowerCase() === "client@bmautodetailing.ca" && password.value === "BMAuto2026!";
+      if (ok) showDashboard();
+      else error.hidden = false;
+    });
+    document.querySelector("[data-admin-logout]")?.addEventListener("click", () => {
+      sessionStorage.removeItem("bmPortalSignedIn");
+      dashboard.hidden = true;
+      login.hidden = false;
+      form.reset();
+    });
+  }
 });
