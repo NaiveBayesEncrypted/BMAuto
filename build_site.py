@@ -116,6 +116,7 @@ def page_shell(title, desc, body, active="", extra_schema=""):
       "@type": "AutoRepair",
       "name": "{BUSINESS['name']}",
       "image": "{og_image_url}",
+      "logo": "{SITE_URL}/assets/images/favicon-512.png",
       "telephone": "{BUSINESS['phone']}",
       "email": "{BUSINESS['email']}",
       "address": {{"@type":"PostalAddress","streetAddress":"1247 36 Ave NE","addressLocality":"Calgary","addressRegion":"AB","postalCode":"T2E 6N6","addressCountry":"CA"}},
@@ -143,7 +144,12 @@ def page_shell(title, desc, body, active="", extra_schema=""):
   <meta name="twitter:image" content="{og_image_url}">
 {robots_meta}  <meta name="theme-color" content="#080a0c">
   <link rel="canonical" href="{canonical_url}">
-  <link rel="icon" href="{img['logo_mark']}" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/images/favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="/assets/images/favicon-96.png" type="image/png" sizes="96x96">
+  <link rel="icon" href="/assets/images/bm-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest">
 {hero_preload.rstrip()}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
